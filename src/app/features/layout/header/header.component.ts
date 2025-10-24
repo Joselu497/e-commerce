@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { CartComponent } from '../../cart/cart.component';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,4 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
-}
+export class HeaderComponent { }
