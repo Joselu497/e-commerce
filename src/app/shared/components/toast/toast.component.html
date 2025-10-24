@@ -1,0 +1,26 @@
+<div class="fixed space-y-2 right-3 top-2 mt-16">
+    @for(toast of toasts; track toast.id) {
+    <div class="bg-white shadow-sm z-10 ring-1 ring-gray-900/5 rounded-lg p-1.5 pe-4 animate-fade duration-300">
+        <div class="flex items-center gap-2">
+            @if(toast.type === 'success') {
+            <div class="bg-teal-200 text-teal-500 p-2 rounded-lg flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                    <path fill-rule="evenodd"
+                        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            } @else {
+            <div class="bg-red-200 text-red-500 p-2 rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            }
+            <span class="font-semibold text-gray-900">{{ toast.message }}</span>
+        </div>
+    </div>
+    }
+</div>

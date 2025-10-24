@@ -30,21 +30,20 @@
                     }
                 </div>
             </div>
-            <div class="flex justify-end mt-4">
-                <div class="inline-flex gap-2 items-center">
-                    <button (click)="onBack()" type="button" class="bg-gray-200 font-semibold text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer inline-flex gap-2 items-center">
-                        Back to catalog
-                    </button>
-                    <button type="submit" [disabled]="isLoading()"
-                        class="bg-indigo-600 font-semibold text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors cursor-pointer inline-flex gap-2 items-center disabled:bg-gray-400 disabled:cursor-not-allowed">
-                        @if (isLoading()) {
-                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        <span>Logging in...</span>
-                        } @else {
-                        <span>Login</span>
-                        }
-                    </button>
-                </div>
+            <div class="flex justify-between mt-4">
+                <button (click)="onBack()" type="button"
+                    class="bg-gray-200 font-semibold text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer inline-flex gap-2 items-center">
+                    Back to catalog
+                </button>
+                <button type="submit" [disabled]="isLoading()"
+                    class="bg-indigo-600 font-semibold text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors cursor-pointer inline-flex gap-2 items-center disabled:bg-indigo-400 disabled:cursor-not-allowed">
+                    @if (isLoading()) {
+                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Logging...</span>
+                    } @else {
+                    <span>Login</span>
+                    }
+                </button>
             </div>
         </form>
     </div>

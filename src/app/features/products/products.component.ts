@@ -1,13 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Product } from '../../_core/interfaces/product';
 import { ProductService } from '../../_core/services/product.service';
 import { ShortDescriptionPipe } from '../../shared/pipes/short-description.pipe';
 import { Store } from '@ngrx/store';
 import { addToCart } from '../../store/cart/cart.actions';
-import { selectCartState } from '../../store/cart/cart.selector';
 import { takeUntil } from 'rxjs';
 import { DestroyComponent } from '../../shared/components/destroy.component';
+import { NotificationService } from '../../_core/services/notification.service';
 
 @Component({
   selector: 'app-products',
@@ -17,6 +16,7 @@ import { DestroyComponent } from '../../shared/components/destroy.component';
 })
 export class ProductsComponent extends DestroyComponent implements OnInit {
   private _productService = inject(ProductService);
+  private _notificationService = inject(NotificationService);
   private _store = inject(Store);
 
   products: Product[] = [];
@@ -44,6 +44,7 @@ export class ProductsComponent extends DestroyComponent implements OnInit {
    * @param product - The product to add to the cart
    */
   onAddToCart(product: Product) {
+    this._notificationService.success('Product added to cart');
     this._store.dispatch(addToCart({ item: product }));
   }
 }
