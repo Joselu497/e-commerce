@@ -3,10 +3,11 @@ import { Product } from '../../_core/interfaces/product';
 import { ProductService } from '../../_core/services/product.service';
 import { ShortDescriptionPipe } from '../../shared/pipes/short-description.pipe';
 import { Store } from '@ngrx/store';
-import { addToCart } from '../../store/cart/cart.actions';
 import { takeUntil } from 'rxjs';
 import { DestroyComponent } from '../../shared/components/destroy.component';
 import { NotificationService } from '../../_core/services/notification.service';
+import { AuthService } from '../../_core/services/auth.service';
+import { CartService } from '../../_core/services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,10 @@ export class ProductsComponent extends DestroyComponent implements OnInit {
   private _productService = inject(ProductService);
   private _notificationService = inject(NotificationService);
   private _store = inject(Store);
+  private _authService = inject(AuthService);
+  private _cartService = inject(CartService);
 
+  isAuthenticated = this._authService.isAuthenticated;
   products: Product[] = [];
   isLoading = signal(true);
 
@@ -45,6 +49,6 @@ export class ProductsComponent extends DestroyComponent implements OnInit {
    */
   onAddToCart(product: Product) {
     this._notificationService.success('Product added to cart');
-    this._store.dispatch(addToCart({ item: product }));
+    this._cartService.addToCart(product);
   }
 }

@@ -3,6 +3,8 @@ import { CartState } from "./cart";
 
 export const selectCartState = createFeatureSelector<CartState>('cart');
 
+export const selectCart = createSelector(selectCartState, (state: CartState) => state);
+
 export const selectCartItems = createSelector(selectCartState, (state: CartState) => state.items);
 
 export const selectCartTotal = createSelector(selectCartState, (state: CartState) => state.total);

@@ -1,8 +1,18 @@
 <div class="pt-32 px-5">
     <div class="max-w-md mx-auto bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg p-6">
-        <h1 class="text-2xl font-semibold text-indigo-600">Login</h1>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
-            <div class="flex flex-col gap-2">
+        <div class="text-center">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h1 class="text-xl font-semibold text-indigo-600">Log in</h1>
+            <h2 class="text-gray-600">Welcome back</h2>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8">
+            <div class="flex flex-col gap-1">
                 <span class="text-sm font-medium text-gray-700"> Username </span>
                 <div>
                     <input type="text" id="username" name="username" formControlName="username"
@@ -16,7 +26,7 @@
                     }
                 </div>
             </div>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-1 mt-4">
                 <span class="text-sm font-medium text-gray-700"> Password </span>
                 <div>
                     <input type="password" id="password" name="password" formControlName="password"
@@ -30,7 +40,7 @@
                     }
                 </div>
             </div>
-            <div class="flex justify-between mt-4">
+            <div class="flex justify-between mt-8">
                 <button (click)="onBack()" type="button"
                     class="bg-gray-200 font-semibold text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer inline-flex gap-2 items-center">
                     Back to catalog

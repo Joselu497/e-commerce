@@ -9,7 +9,8 @@ import { Toast } from '../../../_core/interfaces/toast';
   templateUrl: './toast.component.html',
 })
 export class ToastComponent implements OnInit {
-  private _notificationService: NotificationService = inject(NotificationService);
+  private _notificationService: NotificationService =
+    inject(NotificationService);
 
   toasts: Toast[] = [];
 
@@ -17,5 +18,14 @@ export class ToastComponent implements OnInit {
     this._notificationService.notifications$.subscribe(
       (toasts) => (this.toasts = toasts)
     );
+  }
+
+  /**
+   * Removes a toast from the notifications list
+   * @param id - The id of the toast to remove
+   */
+  removeToast(id: number | undefined): void {
+    if (!id) return;
+    this._notificationService.remove(id);
   }
 }

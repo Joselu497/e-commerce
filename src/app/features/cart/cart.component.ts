@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {
+  selectCartItemCount,
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/cart/cart.selector';
+import { CartItem } from '../../store/cart/cart';
 import { Product } from '../../_core/interfaces/product';
-import { ProductService } from '../../_core/services/product.service';
+import { CartService } from '../../_core/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,17 +18,34 @@ import { ProductService } from '../../_core/services/product.service';
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
-  isOpen = signal(false);
+  private _store = inject(Store);
+  private _cartService = inject(CartService);
 
-  open() {
-    this.isOpen.set(true);
+  items$: Observable<CartItem[]> = this._store.select(selectCartItems);
+  total$: Observable<number> = this._store.select(selectCartTotal);
+  itemCount$: Observable<number> = this._store.select(selectCartItemCount);
+  cartItems$: Observable<CartItem[]> = this._store.select(selectCartItems);
+
+  /**
+   * Increments the quantity if the product is already in the cart
+   * @param item - Product to add to the cart
+   */
+  addToCart(item: Product): void {
+    this._cartService.addToCart(item);
   }
 
-  close() {
-    this.isOpen.set(false);
+  /**
+   * Decrements the quantity if the product is in the cart and removes it if the quantity is 0
+   * @param item - Product to remove from the cart
+   */
+  removeFromCart(item: Product): void {
+    this._cartService.removeFromCart(item);
   }
 
-  toggle() {
-    this.isOpen.update((value) => !value);
+  /**
+   * Clears the cart and resets the total
+   */
+  clearCart(): void {
+    this._cartService.clearCart();
   }
 }

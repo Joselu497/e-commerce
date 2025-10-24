@@ -3,6 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { CartService } from './cart.service';
 
 const API_URL = environment.apiUrl;
 
@@ -13,6 +14,7 @@ export class AuthService {
   private _http: HttpClient = inject(HttpClient);
   private _router = inject(Router);
   private _token = signal(this.getToken);
+  private _cartService = inject(CartService);
 
   isAuthenticated = computed(() => !!this._token());
 
@@ -38,10 +40,11 @@ export class AuthService {
   }
 
   /**
-   * Logs out the current user and clears the token from local storage
+   * Logs out the current user, clears the token from local storage and clears the cart
    */
   logout() {
     localStorage.removeItem('token');
     this._token.set(null);
+    this._cartService.clearCart();
   }
 }
