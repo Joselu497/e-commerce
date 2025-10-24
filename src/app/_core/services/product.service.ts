@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
-const API_URL = environment.apiUrl
+const API_URL = environment.apiUrl + '/products'
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,6 @@ export class ProductService {
    * @returns - Observable that contains a list of products
    */
   getAll(): Observable<any> {
-    return this._http.get(API_URL)
+    return this._http.get(API_URL);
   }
 }
