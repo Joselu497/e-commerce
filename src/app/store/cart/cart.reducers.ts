@@ -43,14 +43,42 @@ export const cartReducer = createReducer(
 
   /**
    * Remove a product from the cart and update the total
+   * If the product is in the cart, decrement the quantity
+   * If the product quantity is 1, remove the product from the cart
    */
   on(CartActions.removeFromCart, (state, { item }) => {
-    return {
-      ...state,
-      items: state.items.filter((i) => i.Product.id !== item.Product.id),
-      total: state.total - item.Product.price,
-      itemCount: state.itemCount - 1,
-    };
+    const existingItem = state.items.find((i) => i.Product.id === item.id);
+
+    if (!existingItem) {
+      return state;
+    }
+
+    if (existingItem.quantity > 1) {
+      const updatedItems = state.items.map((cartItem) => {
+        if (cartItem.Product.id === item.id) {
+          return { ...cartItem, quantity: cartItem.quantity - 1 };
+        }
+        return cartItem;
+      });
+
+      return {
+        ...state,
+        items: updatedItems,
+        total: state.total - existingItem.Product.price,
+        itemCount: state.itemCount - 1,
+      };
+    } else {
+      const updatedItems = state.items.filter(
+        (cartItem) => cartItem.Product.id !== item.id
+      );
+
+      return {
+        ...state,
+        items: updatedItems,
+        total: state.total - existingItem.Product.price,
+        itemCount: state.itemCount - 1,
+      };
+    }
   }),
 
   /**
@@ -63,5 +91,5 @@ export const cartReducer = createReducer(
       total: 0,
       itemCount: 0,
     };
-  }),
-)
+  })
+);
