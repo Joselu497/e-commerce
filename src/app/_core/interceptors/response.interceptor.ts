@@ -12,7 +12,7 @@ import { catchError, Observable, throwError } from 'rxjs';
  * Http interceptor that handles errors and displays them in the toast
  */
 @Injectable()
-export class httpInterceptor implements HttpInterceptor {
+export class ResponseInterceptor implements HttpInterceptor {
   private _notificationService: NotificationService =
     inject(NotificationService);
 
@@ -22,10 +22,9 @@ export class httpInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
-        console.log(error)
         this._notificationService.error(error.error);
         return throwError(() => error);
-      }),
+      })
     );
   }
 }

@@ -5,7 +5,8 @@ import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { cartReducer } from './store/cart/cart.reducers';
-import { httpInterceptor } from './_core/interceptors/http.interceptor';
+import { ResponseInterceptor } from './_core/interceptors/response.interceptor';
+import { RequestInterceptor } from './_core/interceptors/request.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: httpInterceptor,
+      useClass: ResponseInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
       multi: true,
     },
     provideStore({ cart: cartReducer }),
