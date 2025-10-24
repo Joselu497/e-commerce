@@ -8,9 +8,12 @@ import { Toast } from '../interfaces/toast';
 })
 export class NotificationService {
   private _toasts: Toast[] = [];
-  private _currentToastId: number = 0;
+  private _currentToastId: number = 1;
   private _notificationSubject = new BehaviorSubject<Toast[]>([]);
 
+  /**
+   * Observable that emits the notifications list
+   */
   get notifications$(): Observable<Toast[]> {
     return this._notificationSubject.asObservable();
   }
@@ -34,6 +37,15 @@ export class NotificationService {
       this._toasts = this._toasts.filter((item) => item.id !== toast.id);
       this._notificationSubject.next(this._toasts);
     }, 5000);
+  }
+
+  /**
+   * Removes a toast by id
+   * @param id - The id of the toast to remove
+   */
+  remove(id: number) {
+    this._toasts = this._toasts.filter((item) => item.id !== id);
+    this._notificationSubject.next(this._toasts);
   }
 
   /**

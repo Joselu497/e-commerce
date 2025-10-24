@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectCartItemCount } from '../../../store/cart/cart.selector';
 import { CommonModule } from '@angular/common';
+import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TooltipDirective],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
