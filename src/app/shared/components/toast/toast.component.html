@@ -1,6 +1,6 @@
 <div class="fixed space-y-2 right-3 top-2 mt-16">
     @for(toast of toasts; track toast.id) {
-    <div class="bg-white shadow-sm z-10 ring-1 ring-gray-900/5 rounded-lg p-1.5 pe-4 animate-fade duration-300">
+    <div class="bg-white shadow-sm z-10 ring-1 ring-gray-900/5 rounded-lg p-1.5 pe-4 transition-all duration-300 ease-in-out">
         <div class="flex items-center gap-2">
             @if(toast.type === 'success') {
             <div class="bg-teal-200 text-teal-500 p-2 rounded-lg flex items-center">

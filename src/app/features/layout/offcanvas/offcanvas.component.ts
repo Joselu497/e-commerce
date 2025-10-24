@@ -13,11 +13,8 @@ import { LayoutService } from '../../../_core/services/layout.service';
 export class OffcanvasComponent {
   private _layoutService: LayoutService = inject(LayoutService);
 
-  isOffcanvasOpen = this._layoutService.isOffcanvasOpen;
+  isOpen = this._layoutService.isOffcanvasOpen;
 
-  /**
-   * Closes the offcanvas in the layout component
-   */
   closeOffcanvas() {
     this._layoutService.closeOffcanvas();
   }
