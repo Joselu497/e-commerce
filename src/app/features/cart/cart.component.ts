@@ -50,9 +50,13 @@ export class CartComponent {
    * Clears the cart and resets the total
    */
   clearCart(): void {
+    this._layoutService.closeOffcanvas();
     this._cartService.clearCart();
   }
 
+  /**
+   * Navigates to the payment page to process to payment
+   */
   onProcess() {
     this._layoutService.closeOffcanvas();
     this._router.navigate(['payment']);
