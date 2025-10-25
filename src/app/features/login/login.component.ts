@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../_core/services/auth.service';
 import { DestroyComponent } from '../../shared/components/destroy.component';
 import { takeUntil } from 'rxjs';
+import { NotificationService } from '../../_core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent extends DestroyComponent {
   private _fb = inject(FormBuilder);
   private _authService = inject(AuthService);
   private _router = inject(Router);
+  private _notificationService = inject(NotificationService);
 
   isLoading = signal(false);
 
@@ -46,15 +48,14 @@ export class LoginComponent extends DestroyComponent {
           next: (res) => {
             this._router.navigate(['/']);
             this.isLoading.set(false);
+            this._notificationService.success('Welcome back!')
           },
           error: (err) => {
             this.isLoading.set(false);
           },
         });
     } else {
-      Object.values(this.loginForm.controls).forEach((control) => {
-        control.markAsTouched();
-      });
+      this.loginForm.markAllAsTouched()
       this.isLoading.set(false);
     }
   }
@@ -63,6 +64,6 @@ export class LoginComponent extends DestroyComponent {
    * Redirects to the products page
    */
   onBack() {
-    this._router.navigate(['products']);
+    this._router.navigate(['/']);
   }
 }
