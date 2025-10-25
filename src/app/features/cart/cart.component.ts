@@ -10,16 +10,20 @@ import {
 import { CartItem } from '../../store/cart/cart';
 import { Product } from '../../_core/interfaces/product';
 import { CartService } from '../../_core/services/cart.service';
+import { Router, RouterModule } from '@angular/router';
+import { LayoutService } from '../../_core/services/layout.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
   private _store = inject(Store);
   private _cartService = inject(CartService);
+  private _router = inject(Router);
+  private _layoutService = inject(LayoutService);
 
   items$: Observable<CartItem[]> = this._store.select(selectCartItems);
   total$: Observable<number> = this._store.select(selectCartTotal);
@@ -47,5 +51,10 @@ export class CartComponent {
    */
   clearCart(): void {
     this._cartService.clearCart();
+  }
+
+  onProcess() {
+    this._layoutService.closeOffcanvas();
+    this._router.navigate(['payment']);
   }
 }

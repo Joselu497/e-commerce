@@ -46,5 +46,6 @@ export class AuthService {
     localStorage.removeItem('token');
     this._token.set(null);
     this._cartService.clearCart();
+    this._router.navigate(['/']);
   }
 }
