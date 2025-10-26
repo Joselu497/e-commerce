@@ -1,35 +1,43 @@
 <div class="max-w-4xl">
-    @if (!isLoading()) {
+    @if (!isLoading() && products && products.length > 0) {
     <h1 class="text-2xl font-semibold text-gray-900">Catalog</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-16">
-        @for (product of products; track product.id)  {
-            <div class="bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg p-6">
-                <div class="flex flex-col gap-2 h-full">
-                    <div class="mx-auto p-2">
-                        <img [src]="product.image" alt="Product image" class="w-auto h-64">
-                    </div>
-                    <h2 class="text-lg font-semibold text-gray-900">{{ product.title }}</h2>
-                    <p class="text-gray-600 text-sm line-clamp-3 grow mb-3">{{ product.description | shortDescription }}</p>
-                    <div class="flex items-center justify-between mt-auto">
-                        <p class="text-xl font-bold">${{ product.price }}</p>
-                        @if (isAuthenticated()) {
-                            <button (click)="onAddToCart(product)"
-                                class="bg-indigo-600 font-semibold text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors cursor-pointer inline-flex gap-2 items-center"><svg
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                                    <path
-                                        d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-                                </svg>
-                                Add to cart</button>
-                        }
-                    </div>
+        @for (product of products; track product.id) {
+        <div class="bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg p-6">
+            <div class="flex flex-col gap-2 h-full">
+                <div class="mx-auto p-2">
+                    <img [src]="product.image" alt="Product image" class="w-auto h-64">
+                </div>
+                <h2 class="text-lg font-semibold text-gray-900">{{ product.title }}</h2>
+
+                <p class="text-gray-600 text-sm mb-3">{{ product.description | shortDescription }} <a
+                        [routerLink]="'./details/' + product.id"
+                        class="cursor-pointer text-indigo-600 font-semibold">more details</a></p>
+
+                <div class="flex items-center justify-between mt-auto">
+                    <p class="text-xl font-bold">${{ product.price }}</p>
+                    @if (isAuthenticated()) {
+                    <button (click)="onAddToCart(product)"
+                        class="bg-indigo-600 font-semibold text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-colors cursor-pointer inline-flex gap-2 items-center"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path
+                                d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                        Add to cart</button>
+                    }
                 </div>
             </div>
+        </div>
         }
     </div>
-    } @else {
+    } @else if (isLoading()){
     <div class="flex justify-center items-center min-h-[calc(100vh-10.25rem)]">
         <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
     </div>
+    } @else {
+    <div class="flex flex-col justify-center items-center min-h-[calc(100vh-10.25rem)]">
+        <h2 class="text-2xl font-semibold text-gray-900">Something went wrong</h2>
+        <p class="text-xl text-gray-600">Please try refreshing the page</p>
+    </div>
     }
-
 </div>

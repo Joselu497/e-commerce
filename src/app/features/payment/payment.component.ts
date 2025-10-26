@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { DestroyComponent } from '../../shared/components/destroy.component';
 import { NotificationService } from '../../_core/services/notification.service';
+import { CartService } from '../../_core/services/cart.service';
 
 @Component({
   selector: 'app-payment',
@@ -20,6 +21,7 @@ export class PaymentComponent extends DestroyComponent {
   private _fb = inject(FormBuilder);
   private _router = inject(Router);
   private _notificationService = inject(NotificationService);
+  private _cartService = inject(CartService);
 
   isLoading = signal(false);
 
@@ -61,6 +63,7 @@ export class PaymentComponent extends DestroyComponent {
       setTimeout(() => {
         this.isLoading.set(false);
 
+        this._cartService.clearCart();
         this._notificationService.success('Payment successful!');
         this.onBack();
       }, 2000);
