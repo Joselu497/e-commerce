@@ -37,8 +37,8 @@ export class ProductsComponent extends DestroyComponent implements OnInit {
           this.isLoading.set(false);
         },
         error: (err) => {
-          this.isLoading.set(false);
           this._notificationService.error('Error loading products');
+          this.isLoading.set(false);
         },
       });
   }

@@ -22,7 +22,23 @@ export class ResponseInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error) => {
-        this._notificationService.error(error.error);
+        let errorMessage = ''
+        switch (error.status) {
+          case 0:
+            errorMessage = 'No server connection';
+            break;
+          case 400:
+          case 401:
+            errorMessage = error.error;
+            break;
+          case 500:
+            errorMessage = 'Internal server error';
+            break;
+          default:
+            errorMessage = 'Something went wrong';
+        }
+        this._notificationService.error(errorMessage);
+        
         return throwError(() => error);
       })
     );

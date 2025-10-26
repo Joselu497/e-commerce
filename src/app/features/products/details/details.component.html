@@ -1,4 +1,4 @@
-@if (!isLoading()) {
+@if (!isLoading() && product) {
 <div class="max-w-4xl">
     <div class="bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg p-3 sm:p-6">
         <div class="sm:flex gap-6">
@@ -50,6 +50,7 @@
             </div>
         </div>
         <div class="mt-6 border-t pt-6 w-full">
+            @if(!isLoadingRelated() && relatedProducts.length > 0) {
             <h2 class="text-xl font-semibold text-gray-900 mb-4">Recommended for you</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                 @for(product of relatedProducts; track product.id) {
@@ -66,11 +67,21 @@
                 </div>
                 }
             </div>
+            } @else if (isLoadingRelated()) {
+            <div class="flex justify-center items-center">
+                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+            </div>
+            }
         </div>
     </div>
 </div>
-} @else {
+} @else if (isLoading()) {
 <div class="flex justify-center items-center min-h-[calc(100vh-10.25rem)]">
     <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+</div>
+} @else {
+<div class="flex flex-col justify-center items-center min-h-[calc(100vh-10.25rem)]">
+    <h2 class="text-2xl font-semibold text-gray-900">Something went wrong</h2>
+    <p class="text-xl text-gray-600">Please try refreshing the page</p>
 </div>
 }

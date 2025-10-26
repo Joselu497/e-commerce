@@ -27,20 +27,22 @@ export class DetailsComponent extends DestroyComponent implements OnInit {
   product!: Product;
   relatedProducts: Product[] = [];
   isLoading = signal(true);
+  isLoadingRelated = signal(true);
 
   ngOnInit() {
-    this.isLoading.set(true);
-
     // Gets the product details and the products in the same category
     this._route.params
       .pipe(
         takeUntil(this.destroy$),
         switchMap((params) => {
           this.isLoading.set(true);
+          this.isLoadingRelated.set(true);
+          
           this.productId = params['id'];
           return this._productService.get(this.productId);
         }),
         switchMap((product) => {
+          this.isLoading.set(false);
           this.product = product;
           return this._productService.getAllByCategory(product.category);
         })
@@ -50,10 +52,11 @@ export class DetailsComponent extends DestroyComponent implements OnInit {
           this.relatedProducts = relatedProducts.filter(
             (product: Product) => product.id !== +this.productId
           );
-          this.isLoading.set(false);
+          this.isLoadingRelated.set(false);
         },
         error: (err) => {
           this.isLoading.set(false);
+          this.isLoadingRelated.set(false);
           this._notificationService.error('Error loading product details');
         },
       });
