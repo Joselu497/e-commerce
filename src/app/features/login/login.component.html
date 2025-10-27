@@ -16,7 +16,7 @@
                 <span class="text-sm font-medium text-gray-700"> Username </span>
                 <div>
                     <input type="text" id="username" name="username" formControlName="username"
-                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                     @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
                     <div class="text-sm text-red-600 ms-1">
                         @if (loginForm.get('username')?.errors?.['required']) {
@@ -30,7 +30,7 @@
                 <span class="text-sm font-medium text-gray-700"> Password </span>
                 <div>
                     <input type="password" id="password" name="password" formControlName="password"
-                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                     @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
                     <div class="text-sm text-red-600 ms-1">
                         @if (loginForm.get('password')?.errors?.['required']) {

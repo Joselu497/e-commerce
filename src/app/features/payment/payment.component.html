@@ -1,4 +1,4 @@
-<div class="max-w-4xl bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg p-3 sm:p-6">
+<div class="max-w-xl bg-white shadow-sm mx-auto ring-1 ring-gray-900/5 rounded-lg p-3 sm:p-6">
     <div class="text-center mt-4">
         <h1 class="text-xl font-semibold text-indigo-600">Complete your payment</h1>
         <h2 class="text-gray-600">Please enter your payment information below</h2>
@@ -8,7 +8,7 @@
             <span class="text-sm font-medium text-gray-700"> Email </span>
             <div>
                 <input type="email" id="email" name="email" formControlName="email"
-                    class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                    class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                 @if (paymentForm.get('email')?.invalid && paymentForm.get('email')?.touched) {
                 <div class="text-sm text-red-600 ms-1">
                     @if (paymentForm.get('email')?.errors?.['required']) {
@@ -25,7 +25,7 @@
             <div>
                 <input type="text" placeholder="####-####-####-####" id="cardNumber" name="cardNumber"
                     formControlName="cardNumber"
-                    class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                    class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                 @if (paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched) {
                 <div class="text-sm text-red-600 ms-1">
                     @if (paymentForm.get('cardNumber')?.errors?.['required']) {
@@ -45,7 +45,7 @@
                 <div>
                     <input type="text" placeholder="MM/YY" id="cardExpiry" name="cardExpiry"
                         formControlName="cardExpiry"
-                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                     @if (paymentForm.get('cardExpiry')?.invalid && paymentForm.get('cardExpiry')?.touched) {
                     <div class="text-sm text-red-600 ms-1">
                         @if (paymentForm.get('cardExpiry')?.errors?.['required']) {
@@ -61,7 +61,7 @@
                 <span class="text-sm font-medium text-gray-700"> Card CVV </span>
                 <div>
                     <input type="text" placeholder="###" id="cardCvv" name="cardCvv" formControlName="cardCvv"
-                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 border">
+                        class="mt-0.5 p-1.5 w-full rounded border-gray-300 shadow-sm sm:text-sm focus:outline-none focus:border-indigo-500 border">
                     @if (paymentForm.get('cardCvv')?.invalid && paymentForm.get('cardCvv')?.touched) {
                     <div class="text-sm text-red-600 ms-1">
                         @if (paymentForm.get('cardCvv')?.errors?.['required']) {
@@ -81,21 +81,21 @@
             <div class="flex gap-6 mt-2">
                 <div class="flex items-center">
                     <input type="radio" id="creditCard" value="creditCard" formControlName="paymentMethod"
-                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        class="h-4 w-4 text-indigo-600 border-gray-300">
                     <label for="creditCard" class="ml-2 block text-sm text-gray-700">
                         Credit Card
                     </label>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" id="paypal" value="paypal" formControlName="paymentMethod"
-                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        class="h-4 w-4 text-indigo-600 border-gray-300">
                     <label for="paypal" class="ml-2 block text-sm text-gray-700">
                         PayPal
                     </label>
                 </div>
                 <div class="flex items-center">
                     <input type="radio" id="cash" value="cash" formControlName="paymentMethod"
-                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        class="h-4 w-4 text-indigo-600 border-gray-300">
                     <label for="cash" class="ml-2 block text-sm text-gray-700">
                         Cash on Delivery
                     </label>
