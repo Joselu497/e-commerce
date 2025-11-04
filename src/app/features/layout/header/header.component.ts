@@ -4,9 +4,9 @@ import { AuthService } from '../../../_core/services/auth.service';
 import { LayoutService } from '../../../_core/services/layout.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectCartItemCount } from '../../../store/cart/cart.selector';
 import { CommonModule } from '@angular/common';
 import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
+import { selectCartItemCount } from '../../../_core/store/cart/cart.selector';
 
 @Component({
   selector: 'app-header',

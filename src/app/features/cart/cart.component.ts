@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import {
-  selectCartItemCount,
-  selectCartItems,
-  selectCartTotal,
-} from '../../store/cart/cart.selector';
-import { CartItem } from '../../store/cart/cart';
 import { Product } from '../../_core/interfaces/product';
 import { CartService } from '../../_core/services/cart.service';
 import { Router, RouterModule } from '@angular/router';
 import { LayoutService } from '../../_core/services/layout.service';
+import { CartItem } from '../../_core/store/cart/cart';
+import {
+  selectCartItemCount,
+  selectCartItems,
+  selectCartTotal,
+} from '../../_core/store/cart/cart.selector';
 
 @Component({
   selector: 'app-cart',
