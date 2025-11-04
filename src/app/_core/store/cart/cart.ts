@@ -1,4 +1,4 @@
-import { Product } from "../../_core/interfaces/product";
+import { Product } from "../../interfaces/product";
 
 export interface CartItem {
   Product: Product;

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { Store } from '@ngrx/store';
@@ -6,7 +5,7 @@ import {
   addToCart,
   clearCart,
   removeFromCart,
-} from '../../store/cart/cart.actions';
+} from '../store/cart/cart.actions';
 
 @Injectable({
   providedIn: 'root',
